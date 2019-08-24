@@ -1,0 +1,98 @@
+% !Mode:: "TeX:UTF-8"
+\chapter{基础算法}
+\label{chap:fundamental_algorithms}
+
+\section{Logistic 回归}
+
+\gls{lr} (Logistic Regression, lr) 虽然名称中带有「回归」二字，但其实是一种分类方法，
+\gls{lr} 可以用于二分类和多分类问题，这里我们只考虑二分类问题。
+
+考虑一个二分类问题，\gls{lr}定义为如下的 \gls{bernoulli_distribution}:
+\begin{equation} \label{formula_lr}
+	\begin{dcases}
+		P(y=1|\Vx) &= \frac{1}{1 + e^{-(\Vw^T\Vx+b)}} \\
+		P(y=0|\Vx) &= \frac{1}{1 + e^{\Vw^T\Vx+b}} 
+	\end{dcases}
+\end{equation}
+其中，$\Vx \in \SetR^n$, $y \in \{0, 1\}$, $\Vw \in \SetR^n$, $b \in \SetR$.
+
+
+
+\begin{itemize}
+  \item Sigmoid 函数
+\end{itemize}
+
+\begin{equation}
+	\sigma^{'}(x) = \sigma(x)[1-\sigma(x)]
+\end{equation}
+
+
+\begin{itemize}
+  \item 对数几率
+\end{itemize}
+
+\begin{align}
+	\log \frac{P(y=1|\Vx)}{P(y=0|\Vx)} &= \Vw^T\Vx+b
+	\label{logistic_prob}
+\end{align}
+
+
+\begin{itemize}
+  \item 参数学习
+\end{itemize}
+
+给定训练样本集 $\SetD = \{(\Vx_1, y_1), (\Vx_2, y_2), \cdots, (\Vx_N, y_N)\}$，
+$\Vx_i \in \SetR^n$, $y_i \in \{0, 1\}$，我们可通过极大\gls{likelihood}法估计模型参数，
+它的基本思想是：当从总体中随机抽取 $n$ 个样本后，最合理的参数估计量应该使得这 $n$ 个样本观测
+值的概率最大。
+
+\gls{lr}的\gls{likelihood}函数为：
+
+\begin{equation}
+	\prod_{i = 1}^N \left[P(y_i = 1 | \Vx_i)\right]^{y_i} \left[P(y_i = 0 | \Vx_i)\right]^{1 - y_i} 
+\end{equation}
+
+对数似然函数为：
+
+\begin{align}
+	\ell(\Vw, b) &= \log\left\{\prod_{i = 1}^N \left[P(y_i = 1 | \Vx_i)\right]^{y_i} \left[P(y_i = 0 | \Vx_i)\right]^{1 - y_i} \right\} \nonumber \\
+	             &= \sum\limits_{i=1}^N\left[y_i\log P(y_i = 1 | \Vx_i)+(1-y_i)\log P(y_i = 0 | \Vx_i)\right] \nonumber 
+\end{align}
+
+令 $ P(y=1|\Vx) = \pi(\Vx) $，则 $ P(y=0|\Vx) = 1 - \pi(\Vx) $。上述对数似然函数简化为：
+\begin{align}
+	\ell(\Vw, b) &= \sum\limits_{i=1}^N \left[
+					y_i\log \pi(\Vx_i) + (1-y_i)\log[1-\pi(\Vx_i)]
+					\right] \nonumber \\
+	             &= \sum\limits_{i=1}^N \left[
+	             	y_i \log \frac{\pi(\Vx_i)}{1-\pi(\Vx_i)} + \log[1-\pi(\Vx_i)]
+	             	\right] \nonumber \\
+	             &= \sum\limits_{i=1}^N \left[
+	             	y_i (\Vw^T\Vx_i+b) - \log (1 + e^{\Vw^T\Vx_i+b})
+	             	\right]
+\end{align}
+
+
+对数似然函数 $ \ell(\Vw, b) $ 关于参数 $ \Vw, b $ 的梯度分别为:
+\begin{align}
+	\frac{\partial \ell(\Vw, b)}{\partial \Vw} &= \sum \limits_{i=1}^N \left[
+		                                          y_i \Vx_i - \pi(\Vx_i) \Vx_i
+		                                          \right]  \nonumber \\
+		                                       &= \sum \limits_{i=1}^N \left[
+		                                          y_i - \pi(\Vx_i) \right] \Vx_i \\ \nonumber \\
+	\frac{\partial \ell(\Vw, b)}{\partial b} &= \sum \limits_{i=1}^N \left[
+		                                          y_i - \pi(\Vx_i)
+		                                          \right]
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
