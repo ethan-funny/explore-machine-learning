@@ -1,6 +1,4 @@
 % !Mode:: "TeX:UTF-8"
-\chapter{基础算法}
-\label{chap:fundamental_algorithms}
 
 \section{Logistic 回归}
 
@@ -8,7 +6,7 @@
 \gls{lr} 可以用于二分类和多分类问题，这里我们只考虑二分类问题。
 
 考虑一个二分类问题，\gls{lr}定义为如下的 \gls{bernoulli_distribution}:
-\begin{equation} \label{formula_lr}
+\begin{equation} \label{math:lr}
 	\begin{dcases}
 		P(y=1|\Vx) &= \frac{1}{1 + e^{-(\Vw^T\Vx+b)}} \\
 		P(y=0|\Vx) &= \frac{1}{1 + e^{\Vw^T\Vx+b}} 
@@ -41,9 +39,9 @@
   \item 参数学习
 \end{itemize}
 
-给定训练样本集 $\SetD = \{(\Vx_1, y_1), (\Vx_2, y_2), \cdots, (\Vx_N, y_N)\}$，
+给定训练样本集 $\SetD = \{(\Vx_1, y_1), (\Vx_2, y_2), \cdots, (\Vx_{\ms N}, y_{\ms N})\}$，
 $\Vx_i \in \SetR^n$, $y_i \in \{0, 1\}$，我们可通过极大\gls{likelihood}法估计模型参数，
-它的基本思想是：当从总体中随机抽取 $n$ 个样本后，最合理的参数估计量应该使得这 $n$ 个样本观测
+它的基本思想是：当从总体中随机抽取 $N$ 个样本后，最合理的参数估计量应该使得这 $N$ 个样本观测
 值的概率最大。
 
 \gls{lr}的\gls{likelihood}函数为：
