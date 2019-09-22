@@ -47,14 +47,21 @@ $\Vx_i \in \SetR^n$, $y_i \in \{0, 1\}$，我们可通过极大\gls{likelihood}�
 \gls{lr}的\gls{likelihood}函数为：
 
 \begin{equation}
-	\prod_{i = 1}^N \left[P(y_i = 1 | \Vx_i)\right]^{y_i} \left[P(y_i = 0 | \Vx_i)\right]^{1 - y_i} 
+	\prod_{i = 1}^N \left[
+		P(y_i = 1 | \Vx_i)\right]^{y_i} \left[P(y_i = 0 | \Vx_i)
+		\right]^{1 - y_i} 
 \end{equation}
 
 对数似然函数为：
 
 \begin{align}
-	\ell(\Vw, b) &= \log\left\{\prod_{i = 1}^N \left[P(y_i = 1 | \Vx_i)\right]^{y_i} \left[P(y_i = 0 | \Vx_i)\right]^{1 - y_i} \right\} \nonumber \\
-	             &= \sum\limits_{i=1}^N\left[y_i\log P(y_i = 1 | \Vx_i)+(1-y_i)\log P(y_i = 0 | \Vx_i)\right] \nonumber 
+	\ell(\Vw, b) &= \log\left\{
+						\prod_{i = 1}^N \left[P(y_i = 1 | \Vx_i)\right]^{y_i} 
+						\left[P(y_i = 0 | \Vx_i)\right]^{1 - y_i} 
+						\right\} \nonumber \\
+	             &= \sum\limits_{i=1}^N\left[
+						 y_i\log P(y_i = 1 | \Vx_i)+(1-y_i)\log P(y_i = 0 | \Vx_i)
+						 \right] \nonumber 
 \end{align}
 
 令 $ P(y=1|\Vx) = \pi(\Vx) $，则 $ P(y=0|\Vx) = 1 - \pi(\Vx) $。上述对数似然函数简化为：
@@ -77,20 +84,10 @@ $\Vx_i \in \SetR^n$, $y_i \in \{0, 1\}$，我们可通过极大\gls{likelihood}�
 		                                          y_i \Vx_i - \pi(\Vx_i) \Vx_i
 		                                          \right]  \nonumber \\
 		                                       &= \sum \limits_{i=1}^N \left[
-		                                          y_i - \pi(\Vx_i) \right] \Vx_i \\ \nonumber \\
+												  y_i - \pi(\Vx_i) 
+												  \right] \Vx_i \\ \nonumber \\
 	\frac{\partial \ell(\Vw, b)}{\partial b} &= \sum \limits_{i=1}^N \left[
 		                                          y_i - \pi(\Vx_i)
 		                                          \right]
 \end{align}
-
-
-
-
-
-
-
-
-
-
-
 
