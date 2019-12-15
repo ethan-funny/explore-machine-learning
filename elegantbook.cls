@@ -262,6 +262,7 @@
 \RequirePackage{graphicx}
 %\RequirePackage{enumerate}
 \RequirePackage{amsmath,mathrsfs,amsfonts,amssymb}
+\RequirePackage{bbm}
 \RequirePackage{booktabs}
 \RequirePackage{multicol}
 \RequirePackage{xcolor}
